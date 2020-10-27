@@ -1,0 +1,124 @@
+.navBar {
+    top: 0;
+    height: 75px;  /*need to add extra 75px to top div in all pages*/
+    width: 100%;
+    background-color: #054b8d;
+    position: fixed;
+    display: flex;
+    align-items: center; /*vertical align*/
+  }
+  
+  .logo {
+    padding-left: 25px;
+    /*flex-grow: 1;*/
+  }
+  .logo img {
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+  }
+  
+  .navButtons {
+    padding-right: 25px;
+  }
+  .navButtons button {
+    color: white;
+    padding: 10px 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+  }
+  .navButtons button:hover {
+    background: #1c3266;
+  }
+  
+  .backgroundImg {
+    position: absolute;
+    z-index: -10;  /*put image behind everything*/
+    height: 100%;
+    width: 100%;
+  }
+  
+  .welcomeDiv {
+    padding-top: 150px;
+    text-align: center;
+  }
+  .welcomeMsg {
+    font-size: 40px;
+    text-decoration: underline;
+  }
+  .userType {
+    margin-top: 80px;
+    font-size: 30px;
+  }
+  
+  .selection {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin: 10px 50px 50px 50px;
+    padding: 20px;
+  }
+  
+  .admin {
+    padding: 10px 0px;
+  }
+  .admin button {
+    background: purple;
+    padding: 15px 20px;
+    font-size: 25px;
+  }
+  .admin button:hover {
+    background: #5f015f;
+  }
+  
+  .librarian {
+    padding: 10px 0px;
+  }
+  .librarian button {
+    background: orange;
+    padding: 15px 20px;
+    font-size: 25px;
+  }
+  .librarian button:hover {
+    background: #cf8702;
+  }
+  
+  .borrower {
+    padding: 10px 0px;
+  }
+  .borrower button {
+    background: salmon;
+    padding: 15px 20px;
+    font-size: 25px;
+  }
+  .borrower button:hover {
+    background: #d65142;
+  }
+  
+  /**********************LOGIN*************************/
+  
+  .login_main {
+    width: 50%;
+    margin: 150px auto 0px auto;
+  }
+  
+  .login_form {
+    text-align: center;
+  }
+  .login_form h1 {
+    font-size: 40px;
+  }
+  .login_form input {
+    margin: 5px 0px;
+  }
+  .login_form button {
+    margin: 5px 0px;
+    width: 100%;
+    padding: 10px;
+    font-size: 18px; 
+  }
+  
+  /*****************LIBRARIAN BRANCHES LIST********************/
+  
+  
