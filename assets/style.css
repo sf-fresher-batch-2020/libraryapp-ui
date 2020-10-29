@@ -2,7 +2,7 @@
     top: 0;
     height: 75px;  /*need to add extra 75px to top div in all pages*/
     width: 100%;
-    background-color: #054b8d;
+    background-color:darkslategrey;
     position: fixed;
     display: flex;
     align-items: center; /*vertical align*/
