@@ -1,11 +1,11 @@
 .navBar {
     top: 0;
-    height: 75px;  /*need to add extra 75px to top div in all pages*/
+    height: 75px;  
     width: 100%;
     background-color:darkslategrey;
     position: fixed;
     display: flex;
-    align-items: center; /*vertical align*/
+    align-items: center; 
   }
   
   .logo {
@@ -72,18 +72,6 @@
     background: #5f015f;
   }
   
-  .librarian {
-    padding: 10px 0px;
-  }
-  .librarian button {
-    background: orange;
-    padding: 15px 20px;
-    font-size: 25px;
-  }
-  .librarian button:hover {
-    background: #cf8702;
-  }
-  
   .borrower {
     padding: 10px 0px;
   }
@@ -99,26 +87,59 @@
   /**********************LOGIN*************************/
   
   .login_main {
-    width: 50%;
+    width: 30%;
     margin: 150px auto 0px auto;
   }
   
-  .login_form {
-    text-align: center;
-  }
+  
   .login_form h1 {
     font-size: 40px;
+    text-align: center;
   }
   .login_form input {
-    margin: 5px 0px;
+    margin: 10px 0px;
   }
+
+  .login_form select {
+    margin: 10px 0px;
+  }
+
   .login_form button {
-    margin: 5px 0px;
-    width: 100%;
+    
+    margin: 20px 0px;
+    margin-left: 100px;
+    width: 50%;
     padding: 10px;
     font-size: 18px; 
+    
   }
   
-  /*****************LIBRARIAN BRANCHES LIST********************/
+  /*********************Register***************************/
+  .login_main {
+    width: 30%;
+    margin: 150px auto 0px auto;
+  }
   
+  
+  .login_form h1 {
+    font-size: 40px;
+    text-align: center;
+  }
+  .login_form input {
+    margin: 10px 0px;
+  }
+
+  .login_form select {
+    margin: 10px 0px;
+  }
+
+  .login_form button {
+    
+    margin: 20px 0px;
+    margin-left: 30px;
+    width: 50%;
+    padding: 10px;
+    font-size: 18px; 
+    
+  }
   

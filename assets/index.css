@@ -28,11 +28,10 @@ input, select {
   font-size: 17px;
   font-family: Roboto;
   font-weight: 300;
-  width: 100%;
-  box-sizing: border-box;
+  /*width: 100%;
+  box-sizing: border-box;*/
 }
 
-/*always show the tick marks on right side*/
 input[type=number]::-webkit-inner-spin-button {
   opacity: 1
 }
@@ -40,14 +39,14 @@ input[type=number]::-webkit-inner-spin-button {
 a, a:hover {
   text-decoration: none;
 }
-label{
+/*label{
     font-size: larger;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     color: #d1d1d1;
     float: right;
     margin-top: 20px;
     margin-left: 10px;
-}
+}*/
 .content
  {
      min-height: 600px; 
@@ -94,7 +93,7 @@ label{
      margin:auto;     
      overflow:hidden; 
  }
- body {
+ #bg {
   background-image: url('background.jpg');
   background-repeat: no-repeat;
   background-attachment: fixed;
