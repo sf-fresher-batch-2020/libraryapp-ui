@@ -107,33 +107,33 @@
   .login_form button {
     
     margin: 20px 0px;
-    margin-left: 100px;
-    width: 50%;
+    margin-left: 20px;
+    width: 40%;
     padding: 10px;
     font-size: 18px; 
     
   }
   
   /*********************Register***************************/
-  .login_main {
+  .register_main {
     width: 30%;
     margin: 150px auto 0px auto;
   }
   
   
-  .login_form h1 {
+  .register_form h1 {
     font-size: 40px;
     text-align: center;
   }
-  .login_form input {
+  .register_form input {
     margin: 10px 0px;
   }
 
-  .login_form select {
+  .register_form select {
     margin: 10px 0px;
   }
 
-  .login_form button {
+  .register_form button {
     
     margin: 20px 0px;
     margin-left: 30px;
@@ -143,3 +143,52 @@
     
   }
   
+  /****************admin*******************/
+  .sidebar {
+    margin-top: 50%;
+    margin:6%;
+    margin-left: 0%;
+    padding: 0;
+    width: 200px;
+    background-color:gray;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    position: fixed;
+  }
+  
+  .sidebar a {
+    display: block;
+    color: white;
+    padding: 16px;
+    text-decoration: none;
+  }
+   
+  .sidebar a.active {
+    background-color: lightgrey;
+    color:black;
+  }
+  
+  .sidebar a:hover:not(.active) {
+    background-color: #555;
+    color: white;
+  }
+  
+  
+  
+  @media screen and (max-width: 700px) {
+    .sidebar {
+      width: 100%;
+      height: auto;
+      position: relative;
+    }
+    .sidebar a {float: left;}
+    
+  }
+  
+  @media screen and (max-width: 400px) {
+    .sidebar a {
+      text-align: center;
+      float: none;
+    }
+  }
