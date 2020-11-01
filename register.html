@@ -15,6 +15,7 @@
 
   <link rel="stylesheet" href="assets/index.css">
   <link rel="stylesheet" href="assets/style.css">
+  <script src="modules/regsiterservice.js"></script>
 </head>
 
 <body>
@@ -30,13 +31,14 @@
         </div>
         <div class="card-body">
       <form action="" method="POST">
-        <label>Register as :</label><br><input type="radio" name="user" value="borrower" id="borrower">borrower&nbsp;&nbsp;
-        <input type="radio" name="user" value="admin" id="admin">Admin<br>
+        <label>Register as :</label><br><input type="radio" name="user" value="borrower" id="borrower" required>borrower&nbsp;&nbsp;
+        <input type="radio" name="user" value="admin" id="admin" required>Admin<br>
         <label>Name :</label><input type="text" name="username" placeholder="Enter your name" id="name"  required autofocus></br>
     <label>Email ID :</label><input type="email" name="email id" placeholder="Enter your mail id" id="email" required></br>
     <label>Password :</label><input type="password" name="pass" id="password"required></br>
     <label>DOB :</label><input type="date" value="" id="dob"></br>
-    <label>Address :</label><input type="textarea" name="address" id="address" ><br />
+    <label>Address :</label><input type="textarea" name="address" id="address" required><br />
+    <label>Mobile No :</label><input type="number" name="number" id="number" required><br />
     <label>Gender :</label><input type="radio" name="gender" value="m" id="m">male&nbsp;&nbsp;
     <input type="radio" name="gender" value="f" id="f">female
        <br />
@@ -56,7 +58,8 @@
            var email=document.getElementById("email").value;
            var password=document.getElementById("password").value;
            var DOB = document.getElementById("dob").value;   
-           var address = document.getElementById("address").value;   
+           var address = document.getElementById("address").value;
+           var phno =  document.getElementById("number").value;
            let genderOptions = document.getElementsByName("gender");
            let gender = null;
             for(let option of genderOptions){
@@ -73,15 +76,18 @@
             }
         }
             
-     var userObj={ "user":user, "name":Name, "email":email, "password":password, "dob" :DOB, "address":address, "gender":gender };
-      //console.log(result);
-      // var users =[];
-       var usersTemp = JSON.parse(localStorage.getItem("USERS"));
-       var users= usersTemp ? usersTemp:[];
-       users.push(userObj);
-       localStorage.setItem("USERS",JSON.stringify(users));
+     var userObj={ "user":user, "name":Name, "email":email, "password":password, "dob" :DOB, "address":address, "mobile_no": phno, "gender":gender };
+     console.log(userObj);
+      var registerserviceObj= new RegisterService();
+      let result= registerserviceObj.register(userObj);
+      if (result=="success"){
        alert("registered successfully");
-       window.location.href="login.html";
+       window.location.href="login.html"; 
+      }
+      else{
+          alert("registration failed");
+      }
+       
        }
 </script>
 </body>

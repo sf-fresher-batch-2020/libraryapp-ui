@@ -21,46 +21,51 @@
     <header id="header">
         <!--header-->
       </header>
-      <div class="sidebar">
-        <a class="active" href="#profile">Profile</a>
-        <a href="addbook.html">Add Book</a>
-        <a href="#manage">Manage Book</a>
-        <a href="booklist.html">Books List</a>
-      </div>
+      
       <main class="container-fluid">        
       <div id="page-content">
       <div class="card text-center">
       <div class="card-header">
-      <h1>Profile</h1>
+      <h1>Books List</h1>
       </div>
             <div class="card-body">
               <table class="table">
+                <thead>
+                    <tr>
+                        <th> S.no </th>
+                        <th> Book Title </th>
+                        <th> Author </th>
+                        <th> Publication</th>
+                        <th> Category </th>
+                        <th> Book image</th>
+                        
+                    </tr>
+                </thead>
                 
-                <tbody id="details">
+                <tbody>
                 </tbody>
             </table>
                 
                 </div>
         </div>
+      </div>
     </main>
       
       <script>
         $("#header").load("components/_header.html");
 
         function displayUser() {
-            let users = JSON.parse(localStorage.getItem("USERS"));
-            //let users= userTemp ? userTemp : [];
-            console.log(users);
-            let content = "";
-            for (let u of users) {
-                content += `<tr><td>Name:</td><td>${u.name}</td></tr>
-                            <tr><td>Email:</td><td>${u.email}</td></tr>
-                            <tr><td>Date of birth:</td><td>${u.dob}</td></tr>
-                            <tr><td>Address:</td><td>${u.address}</td></tr>
-                            <tr><td>Mobile No:</td><td>${u.mobile_no}</td></tr>`;
-            }
-            document.querySelector("#details").innerHTML = content;
-        }
+            let listTemp = JSON.parse(localStorage.getItem("ADDBOOK"));
+            let booklist= listTemp ? listTemp : [];
+            console.log(booklist);
+            let sno = 0;
+            for(let obj of booklist){
+                var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publisher + "</td><td>" + obj.category + "</td><td>" + obj.book_image + "</td><td><button onclick='deleteRecord(" + booklist + ")'>Delete</button><td></tr>";
+                $("table tbody").append(new_row);
+            } 
+          }
+            
+        
         displayUser();
 
         
