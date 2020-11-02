@@ -69,12 +69,22 @@
               else{
                 window.location.href="borrower.html";
               }
-            }
+              console.log("User is logged in");
+      
+              document.querySelectorAll(".nav-link[data-loggedin=false] , .nav-item[data-loggedin=false] , .dropdown-item[data-loggedin=false]").forEach(obj => obj.style.display= "none" );
+              document.querySelectorAll(".nav-link[data-loggedin=true] , .nav-item[data-loggedin=true] , .dropdown-item[data-loggedin=true]").forEach(obj => obj.style.display= "block" );
+              }
             else
             {
                 document.querySelector("#message").innerHTML = "invalid";
+
+                console.log("User is not logged in");
+    
+                document.querySelectorAll(".nav-link[data-loggedin=true] , .nav-item[data-loggedin=true] , .dropdown-item[data-loggedin=true]").forEach(obj => obj.style.display= "none" );
+                document.querySelectorAll(".nav-link[data-loggedin=false] , .nav-item[data-loggedin=false] , .dropdown-item[data-loggedin=false]").forEach(obj => obj.style.display= "block" );
             }
         }
+       
 </script>
 </body>
 

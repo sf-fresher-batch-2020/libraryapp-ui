@@ -38,7 +38,6 @@
                         <th> Publication</th>
                         <th> Book Id </th>
                         <th> Category</th>
-                        <th> Book image</th>
                         <th> Edit</th>
                         
                     </tr>
@@ -66,7 +65,7 @@
             let sno = 0;
             if (booklist.length > 0){
             for(let obj of booklist){
-                var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publisher + "</td><td>" + obj.bookid + "</td><td>" + obj.category + "</td><td>" + obj.book_image + "</td><td><button onclick='deleteRecord("+ obj.bookid +")'>Delete</button><td></tr>";
+                var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publisher + "</td><td>" + obj.bookid + "</td><td>" + obj.category + "</td><td><button onclick='deleteRecord("+ obj.bookid +")'>Delete</button><td></tr>";
                 $("table tbody").append(new_row);
             } 
           }

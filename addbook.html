@@ -42,10 +42,10 @@
                     <option value="it">Information technology</option>
                     <option value="che">Chemical science</option>
     </select>
-    <label>Upload image of book :</label><input type="file" value="upload" id="upload"></br>
     
        
         <button onclick="addbook()">Add Book</button><br>
+        <input type="reset" value="Reset"><br>
 
         <a href="booklist.html" style="text-decoration: underline;">view booklist</a>
       </form>
@@ -65,11 +65,10 @@
            var publisher=document.getElementById("publisher").value;
            var bookid=document.getElementById("bookid").value;
            var category=document.getElementById("category").value;
-           var img = document.getElementById("upload").value;   
            
         
             
-     var bookObj={ "title":booktitle, "author":author, "publisher":publisher, "bookid":bookid, "category":category, "book_image" :img };
+     var bookObj={ "title":booktitle, "author":author, "publisher":publisher, "bookid":bookid, "category":category};
      console.log(bookObj);
       var addBookserviceObj= new AddBookService();
       let result= addBookserviceObj.addbook(bookObj);
