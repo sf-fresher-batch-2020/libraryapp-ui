@@ -12,7 +12,7 @@
         crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"        
         crossorigin="anonymous"></script>
-        <script src="modules/admin.js"></script>
+        <script src="modules/booklist.js"></script>
 
         <link rel="stylesheet" href="assets/index.css">
         <link rel="stylesheet" href="assets/style.css">
@@ -29,15 +29,17 @@
       <h1>Books List</h1>
       </div>
             <div class="card-body">
-              <table class="table">
+              <table class="table" id="myTable">
                 <thead>
                     <tr>
                         <th> S.no </th>
                         <th> Book Title </th>
                         <th> Author </th>
                         <th> Publication</th>
-                        <th> Category </th>
+                        <th> Book Id </th>
+                        <th> Category</th>
                         <th> Book image</th>
+                        <th> Edit</th>
                         
                     </tr>
                 </thead>
@@ -46,6 +48,9 @@
                 </tbody>
             </table>
                 
+                </div>
+                <div class="card-footer">
+                  <button onclick="window.location.href='admin.html';">Back</button>
                 </div>
         </div>
       </div>
@@ -59,17 +64,36 @@
             let booklist= listTemp ? listTemp : [];
             console.log(booklist);
             let sno = 0;
+            if (booklist.length > 0){
             for(let obj of booklist){
-                var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publisher + "</td><td>" + obj.category + "</td><td>" + obj.book_image + "</td><td><button onclick='deleteRecord(" + booklist + ")'>Delete</button><td></tr>";
+                var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publisher + "</td><td>" + obj.bookid + "</td><td>" + obj.category + "</td><td>" + obj.book_image + "</td><td><button onclick='deleteRecord("+ obj.bookid +")'>Delete</button><td></tr>";
                 $("table tbody").append(new_row);
             } 
           }
+          else{
+              alert("No books added");
+              $("table").empty();
+              $("table").append("<tr><td>No books available</td></tr>");
+            }  
+          }
+
+            function deleteRecord(id) {
+              console.log("Going to delete");
+              console.log(id);
+              let list = new BookListService().list();
+              let index = list.findIndex ( obj=>obj.bookid == id);
+              list.splice(index,1);
+              localStorage.setItem("ADDBOOK", JSON.stringify(list));
+              window.location.reload();
+            
+            }
+          
             
         
         displayUser();
 
         
-    </script>
+  
       </script>
 
     

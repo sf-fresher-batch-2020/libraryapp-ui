@@ -60,6 +60,11 @@
                             <tr><td>Mobile No:</td><td>${u.mobile_no}</td></tr>`;
             }
             document.querySelector("#details").innerHTML = content;
+
+            function logout(){
+                localStorage.removeItem("LOGGED_IN_USER");
+                window.location.href="login.html"
+            }
         }
         displayUser();
 
