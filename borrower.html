@@ -27,10 +27,42 @@
         <a href="#renew">Renew</a>
       </div>
       
+      <main class="container-fluid">        
+        <div id="page-content">
+        <div class="card text-center">
+        <div class="card-header">
+        <h1>Profile</h1>
+        </div>
+              <div class="card-body">
+                <table class="table">
+                  
+                  <tbody id="details">
+                  </tbody>
+              </table>
+                  
+                  </div>
+          </div>
+      </main>
       
       <script>
         $("#header").load("components/_header.html");
         
+        function displayUser() {
+            let userTemp = JSON.parse(localStorage.getItem("USERS"));
+            let users= userTemp ? userTemp : [];
+            console.log(users);
+            let content = "";
+            for (let u of users) {
+              
+                content += `<tr><td>Name:</td><td>${u.name}</td></tr>
+                            <tr><td>Email:</td><td>${u.email}</td></tr>
+                            <tr><td>Date of birth:</td><td>${u.dob}</td></tr>
+                            <tr><td>Address:</td><td>${u.address}</td></tr>
+                            <tr><td>Mobile No:</td><td>${u.mobile_no}</td></tr>`;
+            }
+            document.querySelector("#details").innerHTML = content;  
+        }
+        displayUser();
     </script>
       </script>
 

@@ -24,22 +24,29 @@
     </header>
     <main class="container-fluid">        
     <div id="page-content">
-    <div id="search">
-    <label>Select category</label>
-    <select id=category aria-placeholder="select">
+    <h1>Borrow Book</h1>
+    <form action="" method="POST">
+    <div id="cat" style="float: left;">
+    <label>Select category :</label>
+    <select id="category" aria-placeholder="select">
     <option value="">select</option>
     <option value=""></option>
     </select>&nbsp;&nbsp;
-    <label>select publication</label>
-    <select id=publication>
+    </div>
+    <div id="pub" style="float: left;">
+    <label>select publication :</label>
+    <select id="publication">
     <option value=""></option>
     </select>&nbsp;&nbsp;
-    <label>select author</label>
-    <select id=author>
+    </div>
+    <div id="aut">
+    <label>select author :</label>
+    <select id="author">
     <option value=""></option>
     </select><br />
-    <button id="view" onclick="viewbook()">View Books</button>
     </div>
+    <button id="view" onclick="viewbooks()">View Books</button>
+    </form>
     <table class="table" id="myTable">
         <thead>
             <tr>
@@ -49,7 +56,7 @@
                 <th> Publication</th>
                 <th> Book Id </th>
                 <th> Category</th>
-                <th> Edit</th>
+                <th> Action</th>
                 
             </tr>
         </thead>
@@ -70,9 +77,9 @@
             console.log(users);
             let content,content2,content3 = "";
             for (let u of users) {
-                content += `<option value='${u.title}'> ${u.category} </option>`;
-                content2 += `<option value='${u.title}'> ${u.publisher} </option>`;
-                content3 += `<option value='${u.title}'> ${u.author} </option>`;
+                content += `<option value='${u.bookid}'> ${u.category} </option>`;
+                content2 += `<option value='${u.bookid}'> ${u.publisher} </option>`;
+                content3 += `<option value='${u.bookid}'> ${u.author} </option>`;
             }
             
             document.querySelector("#category").innerHTML = content;
@@ -80,50 +87,54 @@
             document.querySelector("#author").innerHTML = content3;
         }
         displayUsers();
-        function viewbook()
+
+
+        function viewbooks()
         {
-            //var cat=document.getElementById("category").value;
-            //var pub=document.getElementById("publication").value;
-            //var aut=document.getElementById("author").value;
             let listTemp = JSON.parse(localStorage.getItem("ADDBOOK"));
-            let booklist= listTemp ? listTemp : [];
+            var booklist= listTemp ? listTemp : [];
             console.log(booklist);
             let sno = 0;
             if (booklist.length > 0){
-            for(let obj of booklist){
+            for( let obj of booklist){
                
                 var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publisher + "</td><td>" + obj.bookid + "</td><td>" + obj.category + "</td><td><button onclick='borrowbook("+ obj.bookid +")'>Borrow Book</button><td></tr>";
                 $("table tbody").append(new_row);
-                
-               
+                 
             } 
-          }
+        }
+          
           else{
-              alert("No books borrowed");
+              alert("No books available");
               $("table").empty();
               $("table").append("<tr><td>No books available</td></tr>");
             }  
           
         }
-        viewbook();
+        viewbooks();
 
-        function borrowbook()
+        function borrowbook(id)
         {
-            alert("add book to account");
-            var borrowlist=viewbook();
-            console.log(borrowlist);
-            var borrowBookserviceObj= new borrowBookService();
-            let result= borrowBookserviceObj.borrowbook(borrowlist);
-            if (result=="success"){
-            alert("book added");
+            console.log("Going to add a book");
+            console.log(id);
+            var temp = JSON.parse(localStorage.getItem("ADDBOOK"));
+            var list = temp ? temp : [];
+            let index = list.findIndex( obj=>obj.bookid == id);
+            list.splice(index,1);
+            localStorage.setItem("BORROWBOOK", JSON.stringify(list));
+            window.location.reload();
+        }
+            
+           // if (result=="success"){
+            //alert("book added");
   
-      }
-      else{
-          alert("book adding failed");
-      }
+     // }
+      //else{
+        //  alert("book adding failed");
+     // }
           
 
-        }
+        
             
         </script>
 </body>
