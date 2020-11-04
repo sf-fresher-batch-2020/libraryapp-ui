@@ -28,9 +28,13 @@
     <form action="" method="POST">
     <div id="cat" style="float: left;">
     <label>Select category :</label>
-    <select id="category" aria-placeholder="select">
-    <option value="">select</option>
-    <option value=""></option>
+    <select id="category" onchange="filterBooklist()">
+    <option value="ALL">ALL</option>
+    <option value="eng">Literature</option>
+    <option value="cse">Computer science</option>
+    <option value="ece">Electronics and communications</option>
+    <option value="it">Information technology</option>
+    <option value="che">Chemical science</option>
     </select>&nbsp;&nbsp;
     </div>
     <div id="pub" style="float: left;">
@@ -65,6 +69,7 @@
     </table>
     </div>
     </main>
+    
 
 
 
@@ -77,19 +82,19 @@
             console.log(users);
             let content,content2,content3 = "";
             for (let u of users) {
-                content += `<option value='${u.bookid}'> ${u.category} </option>`;
+               // content += `<option value='${u.bookid}'> ${u.category} </option>`;
                 content2 += `<option value='${u.bookid}'> ${u.publisher} </option>`;
                 content3 += `<option value='${u.bookid}'> ${u.author} </option>`;
             }
             
-            document.querySelector("#category").innerHTML = content;
+           // document.querySelector("#category").innerHTML = content;
             document.querySelector("#publication").innerHTML = content2;
             document.querySelector("#author").innerHTML = content3;
         }
         displayUsers();
 
 
-        function viewbooks()
+        function books()
         {
             let listTemp = JSON.parse(localStorage.getItem("ADDBOOK"));
             var booklist= listTemp ? listTemp : [];
@@ -111,12 +116,13 @@
             }  
           
         }
-        viewbooks();
+        books();
+        
 
-        function borrowbook(id)
+
+      /* function viewbooks()
         {
-            console.log("Going to add a book");
-            console.log(id);
+            
             var temp = JSON.parse(localStorage.getItem("ADDBOOK"));
             var list = temp ? temp : [];
             let index = list.findIndex( obj=>obj.bookid == id);
@@ -125,13 +131,42 @@
             window.location.reload();
         }
             
-           // if (result=="success"){
-            //alert("book added");
-  
-     // }
-      //else{
-        //  alert("book adding failed");
-     // }
+            */
+         function borrowbook(id){
+             var date=new Date().toJSON();
+             let listTemp = JSON.parse(localStorage.getItem("ADDBOOK"));
+            var booklist= listTemp ? listTemp : [];
+            console.log(booklist);
+            let index = booklist.findIndex( obj=>obj.bookid == id);
+            booklist.splice(index,1);
+            for(u of booklist){
+             var userObj={"title":u.title, "author":u.author, "publisher":u.publisher, "bookid":u.bookid, "category":u.category, "Due Date":date};
+            }
+            var borrowBookrserviceObj= new BorrowBookService();
+            let result= borrowBookrserviceObj.borrowbook(userObj);
+            if (result=="success"){
+            alert("book added successfully");
+       window.location.href="borrower.html"; 
+      }
+      else{
+          alert("book adding failed");
+      }
+
+         }
+         function filterBooklist(){
+            let listTemp = JSON.parse(localStorage.getItem("ADDBOOK"));
+            var booklist= listTemp ? listTemp : [];
+            console.log(booklist);
+            let allstring="ALL";
+            var filterbooks=[];
+            if(this.allstring=="ALL"){
+                this.filterbooks=this.booklist;
+            }
+            else{
+                 this.filterbooks=this.booklist.filter(obj=> obj.category==this.category);
+            }
+
+         }
           
 
         
