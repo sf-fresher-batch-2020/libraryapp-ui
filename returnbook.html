@@ -16,6 +16,7 @@
 
         <link rel="stylesheet" href="assets/index.css">
         <link rel="stylesheet" href="assets/style.css">
+        <script src="modules/returnbooklist.js"></script>
 </head>
 <body>
     <header id="header">
@@ -64,13 +65,11 @@
             let listTemp = JSON.parse(localStorage.getItem("BORROWBOOK"));
             let booklist= listTemp ? listTemp : [];
             console.log(booklist);
-            var due_date= new Date().toJSON();
-            var return_date = due_date + 5;
             let sno = 0;
             if (booklist.length > 0){
             for(let obj of booklist){
                 
-                var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publisher + "</td><td>" + obj.bookid + "</td><td>" + obj.category + "</td><td>" + due_date + "</td><td>" + "</td><td>" + return_date + "</td><td><button onclick='deleteRecord("+ obj.bookid +")'>Delete</button><td></tr>";
+                var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publisher + "</td><td>" + obj.bookid + "</td><td>" + obj.category + "</td><td>" + obj.due_date +  "</td><td>" + obj.return_date + "</td><td><button onclick='deleteRecord("+ obj.bookid +")'>Return</button><td></tr>";
                 $("table tbody").append(new_row);
             } 
           }
@@ -82,12 +81,12 @@
           }
 
             function deleteRecord(id) {
-              console.log("Going to delete");
+              console.log("Going to return");
               console.log(id);
-              let list = new BookListService().list();
+              let list = new ReturnBookListService().list();
               let index = list.findIndex ( obj=>obj.bookid == id);
               list.splice(index,1);
-              localStorage.setItem("ADDBOOK", JSON.stringify(list));
+              localStorage.setItem("BORROWBOOK", JSON.stringify(list));
               window.location.reload();
             
             }
