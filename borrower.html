@@ -23,7 +23,7 @@
       <div class="sidebar">
         <a class="active" href="#profile">Profile</a>
         <a href="borrowbook.html">Borrow Book</a>
-        <a href="returnbook.html">Return Book</a>
+        <a href="borrowbooklist.html">Return Book</a>
         <a href="#renew">Renew</a>
       </div>
       
@@ -48,6 +48,7 @@
         $("#header").load("components/_header.html");
         
         function displayUser() {
+          //getting login user data to display
             let userTemp = JSON.parse(localStorage.getItem("USERS"));
             let users= userTemp ? userTemp : [];
             console.log(users);
@@ -60,7 +61,10 @@
                             <tr><td>Email:</td><td>${u.email}</td></tr>
                             <tr><td>Date of birth:</td><td>${u.dob}</td></tr>
                             <tr><td>Address:</td><td>${u.address}</td></tr>
-                            <tr><td>Mobile No:</td><td>${u.mobile_no}</td></tr>`;
+                            <tr><td>Mobile No:</td><td>${u.mobile_no}</td></tr>
+                            <tr><td>Number of Books borrowed:</td><td>0</td></tr>
+                            <tr><td>Number of Books returned:</td><td>0</td></tr>`;
+                            
             }
             document.querySelector("#details").innerHTML = content;  
           }

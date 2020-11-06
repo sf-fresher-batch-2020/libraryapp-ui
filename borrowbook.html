@@ -70,7 +70,7 @@
         <tbody id="tablebody">
         </tbody>
     </table>
-    <a href="returnbook.html" style="text-decoration: underline;">view booklist</a><br /><br />
+    <a href="borrowbooklist.html" style="text-decoration: underline;">view booklist</a><br /><br />
     <button id="back" onclick="window.location.href='borrower.html'">Back</button>
    
     </div>
@@ -88,9 +88,11 @@
             let userTemp = JSON.parse(localStorage.getItem("ADDBOOK"));
             let users= userTemp ? userTemp : [];
             console.log(users);
-           // console.log("Categories", categories);
-            //let uniqusers = _.uniq(users);
-            //console.log("Unique Categories", uniqusers);
+            /*let index = users.findIndex ( obj=>obj.publisher);
+            var publishers=index;
+            console.log("Publishers", publishers);
+            let uniqusers = _.uniq(publishers);
+            console.log("Unique publishers", uniqusers);*/
            
             let content,content2,content3 = "";
             for (let u of users) {
