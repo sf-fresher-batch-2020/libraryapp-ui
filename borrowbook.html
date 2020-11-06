@@ -122,6 +122,7 @@
         //fetch the booklist and displaying it
         function displaybooks(booklist)
         {
+            $("#tablebody").empty();
             let sno = 0;
             if (booklist.length > 0){
             for( let obj of booklist){
