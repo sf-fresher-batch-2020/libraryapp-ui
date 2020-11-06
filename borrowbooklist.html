@@ -37,10 +37,11 @@
                         <th> Book Title </th>
                         <th> Author </th>
                         <th> Publication</th>
-                        <th> Book Id </th>
+                        <th> Book  </th>
                         <th> Category</th>
                         <th> Due Date</th>
                         <th> Return Date</th>
+                        <th> Action</th>
                         <th> Action</th>
                         
                     </tr>
@@ -69,7 +70,7 @@
             if (booklist.length > 0){
             for(let obj of booklist){
                 
-                var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publisher + "</td><td>" + obj.bookid + "</td><td>" + obj.category + "</td><td>" + obj.due_date +  "</td><td>" + obj.return_date + "</td><td><button onclick='deleteRecord("+ obj.bookid +")'>Return</button><td></tr>";
+                var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publisher + "</td><td>" + obj.bookid + "</td><td>" + obj.category + "</td><td>" + obj.due_date +  "</td><td>" + obj.return_date + "</td><td><button onclick='returnRecord("+ obj.bookid +")'>Return</button></td><td><button onclick='renew()'>Renew</button></td></tr>";
                 $("table tbody").append(new_row);
             } 
           }
@@ -79,8 +80,8 @@
               $("table").append("<tr><td>No books available</td></tr>");
             }  
           }
-
-            function deleteRecord(id) {
+            //return the book
+            function returnRecord(id) {
               console.log("Going to return");
               console.log(id);
               let list = new ReturnBookListService().list();
@@ -90,9 +91,23 @@
               window.location.reload();
             
             }
-          
-            
-        
+            //renew the book
+            function renew(){
+              console.log("going to renew");
+              var temp = JSON.parse(localStorage.getItem("BORROWBOOK"));
+              var list = temp ? temp : [];
+              console.log(list);
+              const date = list.map(obj=>obj.return_date);
+              var renew_date=addDays(date,7);
+              function addDays(date, days) {
+              var result = new Date(date);
+              result.setDate(result.getDate() + days);
+              return result;
+              }
+              document.querySelector("").innerHTML=renew_date;
+             
+             
+            }
         displayUser();
 
         

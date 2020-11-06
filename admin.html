@@ -34,12 +34,11 @@
       </div>
             <div class="card-body">
               <table class="table">
-                
                 <tbody id="details">
                 </tbody>
             </table>
                 
-                </div>
+            </div>
         </div>
     </main>
       
@@ -47,22 +46,18 @@
         $("#header").load("components/_header.html");
 
         function displayUser() {
-            let users = JSON.parse(localStorage.getItem("USERS"));
-            //let users= userTemp ? userTemp : [];
+            var users = JSON.parse(localStorage.getItem("LOGGED_IN_USER"))||[];
             console.log(users);
             let content = "";
             for (let u of users) {
-              if(u.user == "admin"){
                 content += `<tr><td>Name:</td><td>${u.name}</td></tr>
                             <tr><td>Email:</td><td>${u.email}</td></tr>
                             <tr><td>Date of birth:</td><td>${u.dob}</td></tr>
                             <tr><td>Address:</td><td>${u.address}</td></tr>
                             <tr><td>Mobile No:</td><td>${u.mobile_no}</td></tr>`;
+            }
             
             document.querySelector("#details").innerHTML = content;
-              }
-             
-          }
             
         }
         displayUser();

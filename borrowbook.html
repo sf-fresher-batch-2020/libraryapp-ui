@@ -61,7 +61,7 @@
                 <th> Book Title </th>
                 <th> Author </th>
                 <th> Publication</th>
-                <th> Book Id </th>
+                <th> Book </th>
                 <th> Category</th>
                 <th> Action</th>
                 
@@ -88,22 +88,25 @@
             let userTemp = JSON.parse(localStorage.getItem("ADDBOOK"));
             let users= userTemp ? userTemp : [];
             console.log(users);
-            /*let index = users.findIndex ( obj=>obj.publisher);
-            var publishers=index;
+            let publishers = users.map( obj=>obj.publisher);
+            let authors = users.map(obj=>obj.author);
+            //for unique publishers
             console.log("Publishers", publishers);
-            let uniqusers = _.uniq(publishers);
-            console.log("Unique publishers", uniqusers);*/
+            let uniqpub = _.uniq(publishers);
+            console.log("Unique publishers", uniqpub);
+            //for unique authors
+            console.log("Authors", authors);
+            let uniqaut = _.uniq(authors);
+            console.log("Unique authors", uniqaut);
            
             let content,content2,content3 = "";
-            for (let u of users) {
-                
-                
-               // content += `<option value='${u.bookid}'> ${u.category} </option>`;
-                content2 += `<option value='${u.publisher}'> ${u.publisher} </option>`;
-                content3 += `<option value='${u.author}'> ${u.author} </option>`;
+            for (let u of uniqpub) {
+                content2 += `<option value='${u}'> ${u} </option>`;
+            }
+            for (let o of uniqaut) {
+                content3 += `<option value='${o}'> ${o} </option>`;
             }
             
-           // document.querySelector("#category").innerHTML = content;
             document.querySelector("#publication").innerHTML = content2;
             document.querySelector("#author").innerHTML = content3;
         }
@@ -128,21 +131,20 @@
             for( let obj of booklist){
                
                 var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publisher + "</td><td>" + obj.bookid + "</td><td>" + obj.category + "</td><td><button onclick='borrowbook("+ obj.bookid +")'>Borrow Book</button><td></tr>";
-                $("table tbody").append(new_row);
+                $("#tablebody").append(new_row);
                  
             } 
-            //document.querySelector("#mytable").style.display = "block";
+            
         }
           
           else{
               alert("No books available");
-              //document.querySelector("#mytable").style.display= "none";
               $("table").empty();
               $("table").append("<tr><td>No books available</td></tr>");
             }  
           
         }
-
+            
 
         
         
@@ -225,7 +227,8 @@
             }
 
          }
-        
+
+         
 
         
             

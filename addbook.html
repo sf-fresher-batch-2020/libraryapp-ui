@@ -33,7 +33,6 @@
     <label>Book title :</label><input type="text" name="title" id="title" required><br>
     <label>Author of book :</label><input type="text" name="author" id="author"  required ><br>
     <label>Publisher :</label><input type="text" name="publisher" id="publisher" required><br>
-    <label>Book Id:</label><input type="number" name="bookid" id="bookid" required><br>
     <label>Category :</label><select id="category" name="category">
         <option value="">--PLEASE SELECT --</option>
                     <option value="eng">Literature</option>
@@ -63,7 +62,7 @@
            var booktitle=document.getElementById("title").value;
            var author=document.getElementById("author").value;
            var publisher=document.getElementById("publisher").value;
-           var bookid=document.getElementById("bookid").value;
+           var bookid=Math.floor((Math.random() * 10000) + 1);
            var category=document.getElementById("category").value;
            
         
