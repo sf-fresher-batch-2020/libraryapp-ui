@@ -165,6 +165,8 @@
         }
         filtercategory('ALL');
 
+
+        //function viewbooks(){
         //search by publication
         function filterpublication(publication) {
             var booklist = JSON.parse(localStorage.getItem("ADDBOOK")) || [];
@@ -194,12 +196,12 @@
             displaybooks(filteredData);
         }
         filtercategory('ALL');
+    
 
 
+        //borrowing book by clicking it and storing the books
+        
 
-
-
-        //borrowing book by clicking it and storing it
          function borrowbook(id){
              var date=new Date();
              var return_date=addDays(date,7);
@@ -208,26 +210,36 @@
              result.setDate(result.getDate() + days);
              return result;
                 }
+                console.log(return_date);
+               
              let listTemp = JSON.parse(localStorage.getItem("ADDBOOK"));
             var booklist= listTemp ? listTemp : [];
             console.log(booklist);
+           
+            
+            var borrowBookserviceObj= new BorrowBookService();
             let index = booklist.findIndex( obj=>obj.bookid == id);
-            booklist.splice(index,1);
-            for(u of booklist){
-             var userObj={"title":u.title, "author":u.author, "publisher":u.publisher, "bookid":u.bookid, "category":u.category, "due_date":date, "return_date":return_date};
-            }
-            var borrowBookrserviceObj= new BorrowBookService();
-            let result= borrowBookrserviceObj.borrowbook(userObj);
+           // booklist .splice(index,1);
+            let borrowingBook = booklist[index];
+                 var userObj = {
+                "title": borrowingBook.title,
+                "author": borrowingBook.author,
+                "publication":borrowingBook.publisher,
+                "book":borrowingBook.bookid,
+                "category":borrowingBook.category,
+                "issuedDate": date,
+                "returnDate": return_date
+                };
+             var result = borrowBookserviceObj.borrowbook(userObj);
+            booklist .splice(index,1);
             if (result=="success"){
                 alert("book added successfully");
-               // window.location.href="borrower.html"; 
+               window.location.href="borrowbooklist.html"; 
             }
             else{
                 alert("book adding failed");
             }
-
          }
-
          
 
         

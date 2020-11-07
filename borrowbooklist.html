@@ -70,7 +70,7 @@
             if (booklist.length > 0){
             for(let obj of booklist){
                 
-                var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publisher + "</td><td>" + obj.bookid + "</td><td>" + obj.category + "</td><td>" + obj.due_date +  "</td><td>" + obj.return_date + "</td><td><button onclick='returnRecord("+ obj.bookid +")'>Return</button></td><td><button onclick='renew()'>Renew</button></td></tr>";
+                var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publication + "</td><td>" + obj.book + "</td><td>" + obj.category + "</td><td>" + obj.issuedDate +  "</td><td>" + obj.returnDate + "</td><td><button onclick='returnRecord("+ obj.book +")'>Return</button></td><td><button onclick='renew("+ obj.book +")'>Renew</button></td></tr>";
                 $("table tbody").append(new_row);
             } 
           }
@@ -85,28 +85,50 @@
               console.log("Going to return");
               console.log(id);
               let list = new ReturnBookListService().list();
-              let index = list.findIndex ( obj=>obj.bookid == id);
+              let index = list.findIndex ( obj=>obj.book == id);
               list.splice(index,1);
               localStorage.setItem("BORROWBOOK", JSON.stringify(list));
+              let returnBook =list[index];
+                 var userObj = {
+                "booktitle": returnBook.title,
+                "author": returnBook.author,
+                "publication":returnBook.publication,
+                "book":returnBook.book,
+                "category":returnBook.category,
+                "issuedDate": returnBook.issuedDate,
+                "returnDate": returnBook.returnDate
+                };
+              console.log(userObj);
+              var addreturnBookserviceObj= new ReturnBookListService();
+              let result= addreturnBookserviceObj.returnRecord(userObj);
               window.location.reload();
+              if (result=="success"){
+            alert("book returned successfully");
+              }
+              else{
+              alert("book returned failed");
+            }
             
             }
             //renew the book
-            function renew(){
+            function renew(id){
               console.log("going to renew");
-              var temp = JSON.parse(localStorage.getItem("BORROWBOOK"));
-              var list = temp ? temp : [];
-              console.log(list);
-              const date = list.map(obj=>obj.return_date);
-              var renew_date=addDays(date,7);
+              let list = new ReturnBookListService().list();
+              let index = list.findIndex ( obj=>obj.book == id);
+              const return_date = list.map(obj=>obj.returnDate);
+              var renew_date=addDays(return_date,7);
               function addDays(date, days) {
               var result = new Date(date);
               result.setDate(result.getDate() + days);
               return result;
               }
-              document.querySelector("").innerHTML=renew_date;
+              console.log("renew_date");
+
+              
+              localStorage.setItem("BORROWBOOK", JSON.stringify(list));
+              window.location.reload();
              
-             
+              
             }
         displayUser();
 

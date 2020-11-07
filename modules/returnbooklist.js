@@ -13,6 +13,14 @@ class ReturnBookListService
         var list = temp ? temp : [];
         return list;
     }
+    returnRecord = function(userObj){
+        var usersTemp = JSON.parse(localStorage.getItem("RETURNBOOK"));
+        var users= usersTemp ? usersTemp:[];
+        users.push(userObj);
+        localStorage.setItem("RETURNBOOK",JSON.stringify(users));
+        let result="success";
+        return result;
+         }
 
     
 
