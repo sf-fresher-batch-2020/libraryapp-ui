@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="assets/index.css">
         <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
+<body id="background">
     <header id="header">
         <!--header-->
       </header>
@@ -46,16 +46,15 @@
         $("#header").load("components/_header.html");
 
         function displayUser() {
-            var users = JSON.parse(localStorage.getItem("LOGGED_IN_USER"))||[];
-            console.log(users);
+            let obj = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            console.log(obj);
             let content = "";
-            for (let u of users) {
-                content += `<tr><td>Name:</td><td>${u.name}</td></tr>
-                            <tr><td>Email:</td><td>${u.email}</td></tr>
-                            <tr><td>Date of birth:</td><td>${u.dob}</td></tr>
-                            <tr><td>Address:</td><td>${u.address}</td></tr>
-                            <tr><td>Mobile No:</td><td>${u.mobile_no}</td></tr>`;
-            }
+                content += `<tr><td>Name:</td><td>${obj.name}</td></tr>
+                            <tr><td>Email:</td><td>${obj.email}</td></tr>
+                            <tr><td>Date of birth:</td><td>${obj.dob}</td></tr>
+                            <tr><td>Address:</td><td>${obj.address}</td></tr>
+                            <tr><td>Mobile No:</td><td>${obj.mobile_no}</td></tr>`;
+            
             
             document.querySelector("#details").innerHTML = content;
             

@@ -16,7 +16,7 @@
         <link rel="stylesheet" href="assets/index.css">
         <link rel="stylesheet" href="assets/style.css">
 </head>
-<body>
+<body id="background">
     <header id="header">
         <!--header-->
       </header>
@@ -24,7 +24,6 @@
         <a class="active" href="#profile">Profile</a>
         <a href="borrowbook.html">Borrow Book</a>
         <a href="borrowbooklist.html">Return Book</a>
-        <a href="#renew">Renew</a>
       </div>
       
       <main class="container-fluid">        
@@ -49,25 +48,32 @@
         
         function displayUser() {
           //getting login user data to display
-            let userTemp = JSON.parse(localStorage.getItem("USERS"));
-            let users= userTemp ? userTemp : [];
-            console.log(users);
+          //No of books borrowed
+          let userborrowed = JSON.parse(localStorage.getItem("BORROWBOOK"));
+            let userb= userborrowed ? userborrowed : [];
+            console.log(userb);
+            let borrow = userb.length;
+
+          //no of returned books
+          let userreturned = JSON.parse(localStorage.getItem("RETURNBOOK"));
+            let userr= userreturned ? userreturned : [];
+            console.log(userr);
+            let returned = userr.length;
+          //login details
+            let obj = JSON.parse(localStorage.getItem("LOGGED_IN_USER"));
+            console.log(obj);
             let content = "";
-            
-            for (let u of users) {
-              if(u.user == "borrower")
-              {
-                content += `<tr><td>Name:</td><td>${u.name}</td></tr>
-                            <tr><td>Email:</td><td>${u.email}</td></tr>
-                            <tr><td>Date of birth:</td><td>${u.dob}</td></tr>
-                            <tr><td>Address:</td><td>${u.address}</td></tr>
-                            <tr><td>Mobile No:</td><td>${u.mobile_no}</td></tr>
-                            <tr><td>Number of Books borrowed:</td><td>0</td></tr>
-                            <tr><td>Number of Books returned:</td><td>0</td></tr>`;
+                content += `<tr><td>Name:</td><td>${obj.name}</td></tr>
+                            <tr><td>Email:</td><td>${obj.email}</td></tr>
+                            <tr><td>Date of birth:</td><td>${obj.dob}</td></tr>
+                            <tr><td>Address:</td><td>${obj.address}</td></tr>
+                            <tr><td>Mobile No:</td><td>${obj.mobile_no}</td></tr>
+                            <tr><td>Number of Books borrowed:</td><td>${borrow}</td></tr>
+                            <tr><td>Number of Books returned:</td><td>${returned}</td></tr>`;
                             
-            }
+            
             document.querySelector("#details").innerHTML = content;  
-          }
+          
         }
         displayUser();
     </script>

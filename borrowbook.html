@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="assets/style.css">
     <script src="modules/borrowBookService.js"></script>
 </head>
-<body>
+<body id="background">
     <header id="header">
         <!-- Load Header content-->
     </header>
@@ -52,8 +52,8 @@
     <option value=""></option>
     </select><br /><br />
     </div>
-    <button id="view" onclick="viewbooks()">View Books</button><br /><br />
-    </form>
+    </form><br /><br />
+    <h1 style="text-align: center;">Books List</h1>
     <table class="table" id="myTable">
         <thead>
             <tr>
@@ -168,6 +168,7 @@
 
         //function viewbooks(){
         //search by publication
+        
         function filterpublication(publication) {
             var booklist = JSON.parse(localStorage.getItem("ADDBOOK")) || [];
             let filteredData = null;
@@ -197,7 +198,7 @@
         }
         filtercategory('ALL');
     
-
+            
 
         //borrowing book by clicking it and storing the books
         
@@ -219,7 +220,6 @@
             
             var borrowBookserviceObj= new BorrowBookService();
             let index = booklist.findIndex( obj=>obj.bookid == id);
-           // booklist .splice(index,1);
             let borrowingBook = booklist[index];
                  var userObj = {
                 "title": borrowingBook.title,
@@ -233,7 +233,7 @@
              var result = borrowBookserviceObj.borrowbook(userObj);
             booklist .splice(index,1);
             if (result=="success"){
-                alert("book added successfully");
+                alert("book borrowed successfully");
                window.location.href="borrowbooklist.html"; 
             }
             else{

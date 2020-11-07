@@ -18,7 +18,7 @@
  <script src="modules/addbookservice.js"></script>
 </head>
 
-<body>
+<body id="background">
   <header id="header">
     <!--header-->
   </header>
@@ -44,9 +44,10 @@
     
        
         <button onclick="addbook()">Add Book</button><br>
-        <input type="reset" value="Reset"><br>
+        <input type="reset" value="Reset" style="float: left;">
+         <input type="button" value="back" onclick="window.location.href='admin.html';" style="float: right;"></input><br>
 
-        <a href="booklist.html" style="text-decoration: underline;">view booklist</a>
+        <a href="booklist.html" style="text-decoration: underline; ">view booklist</a>
       </form>
       
         </div>

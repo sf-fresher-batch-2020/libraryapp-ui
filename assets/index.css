@@ -99,3 +99,10 @@ a, a:hover {
   background-attachment: fixed;
   background-size: cover;
 }
+  
+#background{
+  background-image: url('homepage.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
