@@ -1,220 +1,230 @@
 .navBar {
     top: 0;
-    height: 75px;  
+    height: 75px;
     width: 100%;
-    background-color:darkslategrey;
+    background-color: darkslategrey;
     position: fixed;
     display: flex;
-    align-items: center; 
-  }
-  
-  .logo {
+    align-items: center;
+}
+
+.logo {
     padding-left: 25px;
     /*flex-grow: 1;*/
-  }
-  .logo img {
+}
+
+.logo img {
     height: 65px;
     width: 65px;
     border-radius: 50%;
-  }
-  
-  .navButtons {
+}
+
+.navButtons {
     padding-right: 25px;
-  }
-  .navButtons button {
+}
+
+.navButtons button {
     color: white;
     padding: 10px 10px;
     background: none;
     border: none;
     font-size: 20px;
-  }
-  .navButtons button:hover {
+}
+
+.navButtons button:hover {
     background: #1c3266;
-  }
-  
-  .backgroundImg {
+}
+
+.backgroundImg {
     position: absolute;
-    z-index: -10;  /*put image behind everything*/
+    z-index: -10;
+    /*put image behind everything*/
     height: 100%;
     width: 100%;
-  }
-  
-  .welcomeDiv {
+}
+
+.welcomeDiv {
     padding-top: 150px;
     text-align: center;
-  }
-  .welcomeMsg {
+}
+
+.welcomeMsg {
     font-size: 40px;
     text-decoration: underline;
-  }
-  .userType {
+}
+
+.userType {
     margin-top: 80px;
     font-size: 30px;
-  }
-  
-  .selection {
+}
+
+.selection {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
     margin: 10px 50px 50px 50px;
     padding: 20px;
-  }
-  
-  .admin {
+}
+
+.admin {
     padding: 10px 0px;
-  }
-  .admin button {
+}
+
+.admin button {
     background: purple;
     padding: 15px 20px;
     font-size: 25px;
-  }
-  .admin button:hover {
+}
+
+.admin button:hover {
     background: #5f015f;
-  }
-  
-  .borrower {
+}
+
+.borrower {
     padding: 10px 0px;
-  }
-  .borrower button {
+}
+
+.borrower button {
     background: salmon;
     padding: 15px 20px;
     font-size: 25px;
-  }
-  .borrower button:hover {
+}
+
+.borrower button:hover {
     background: #d65142;
-  }
-  
-  /**********************LOGIN*************************/
-  
-  .login_main {
+}
+
+
+/**********************LOGIN*************************/
+
+.login_main {
     width: 30%;
     margin: 150px auto 0px auto;
-  }
-  
-  
-  .login_form h1 {
+}
+
+.login_form h1 {
     font-size: 40px;
     text-align: center;
-  }
-  .login_form input {
-    margin: 10px 0px;
-  }
+}
 
-  .login_form select {
+.login_form input {
     margin: 10px 0px;
-  }
+}
 
-  .login_form button {
-    
+.login_form select {
+    margin: 10px 0px;
+}
+
+.login_form button {
     margin: 20px 0px;
     margin-left: 20px;
     width: 40%;
     padding: 10px;
-    font-size: 18px; 
-    
-  }
-  
-  /*********************Register***************************/
-  .register_main {
+    font-size: 18px;
+}
+
+
+/*********************Register***************************/
+
+.register_main {
     width: 30%;
     margin: 150px auto 0px auto;
-  }
-  
-  
-  .register_form h1 {
+}
+
+.register_form h1 {
     font-size: 40px;
     text-align: center;
-  }
-  .register_form input {
-    margin: 10px 0px;
-  }
+}
 
-  .register_form select {
+.register_form input {
     margin: 10px 0px;
-  }
+}
 
-  .register_form button {
-    
+.register_form select {
+    margin: 10px 0px;
+}
+
+.register_form button {
     margin: 20px 0px;
     margin-left: 30px;
     width: 50%;
     padding: 10px;
-    font-size: 18px; 
-    
-  }
-  
-  /****************admin*******************/
-  .sidebar {
+    font-size: 18px;
+}
+
+
+/****************admin*******************/
+
+.sidebar {
     margin-top: 50%;
-    margin:6%;
+    margin: 6%;
     margin-left: 0%;
     padding: 0;
     width: 200px;
-    background-color:gray;
+    background-color: gray;
     position: fixed;
     height: 100%;
     overflow: auto;
     position: fixed;
-  }
-  
-  .sidebar a {
+}
+
+.sidebar a {
     display: block;
     color: white;
     padding: 16px;
     text-decoration: none;
-  }
-   
-  .sidebar a.active {
+}
+
+.sidebar a.active {
     background-color: lightgrey;
-    color:black;
-  }
-  
-  .sidebar a:hover:not(.active) {
+    color: black;
+}
+
+.sidebar a:hover:not(.active) {
     background-color: #555;
     color: white;
-  }
-  
-  
-  
-  @media screen and (max-width: 700px) {
+}
+
+@media screen and (max-width: 700px) {
     .sidebar {
-      width: 100%;
-      height: auto;
-      position: relative;
+        width: 100%;
+        height: auto;
+        position: relative;
     }
-    .sidebar a {float: left;}
-    
-  }
-  
-  @media screen and (max-width: 400px) {
     .sidebar a {
-      text-align: center;
-      float: none;
+        float: left;
     }
-  }
-  /********************profile*******************/
+}
 
-  h1
-     {
-        font-family: "Roboto", sans-serif;
-        font-size: 35px;
-        font-weight: 300;
-        letter-spacing: 1px; 
-        margin-top:10px;
-        text-align:center;
-     }
-    tr:hover {
-          background-color: #ffff99;
-        }
-
-    .container-fluid{
-      float: left;
-      margin-left: 200px;
-      margin-top: 10%;
-      width: 80%;
+@media screen and (max-width: 400px) {
+    .sidebar a {
+        text-align: center;
+        float: none;
     }
+}
 
-    /***********addbook**************/
-    
 
-    
+/********************profile*******************/
+
+h1 {
+    font-family: "Roboto", sans-serif;
+    font-size: 35px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+tr:hover {
+    background-color: #ffff99;
+}
+
+.container-fluid {
+    float: left;
+    margin-left: 200px;
+    margin-top: 10%;
+    width: 80%;
+}
+
+
+/***********addbook**************/

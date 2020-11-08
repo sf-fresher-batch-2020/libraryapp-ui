@@ -26,7 +26,7 @@
         <div id="page-content">
             <div class="card text-center">
                 <div class="card-header">
-                    <h1>Books List</h1>
+                    <h1>Borrowed Books List</h1>
                 </div>
                 <div class="card-body">
                     <table class="table" id="myTable">
@@ -38,7 +38,8 @@
                                 <th> Publication</th>
                                 <th> Book </th>
                                 <th> Category</th>
-                                <th> Action</th>
+                                <th> Issued Date</th>
+                                <th> Returned Date</th>
 
                             </tr>
                         </thead>
@@ -49,7 +50,7 @@
 
                 </div>
                 <div class="card-footer">
-                    <button onclick="window.location.href='admin.html';">Back</button>
+                    <button onclick="window.location.href='borrower.html';">Back</button>
                 </div>
             </div>
         </div>
@@ -59,13 +60,13 @@
         $("#header").load("components/_header.html");
 
         function displayUser() {
-            let listTemp = JSON.parse(localStorage.getItem("ADDBOOK"));
+            let listTemp = JSON.parse(localStorage.getItem("BORROWBOOK"));
             let booklist = listTemp ? listTemp : [];
             console.log(booklist);
             let sno = 0;
             if (booklist.length > 0) {
                 for (let obj of booklist) {
-                    var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publisher + "</td><td>" + obj.bookid + "</td><td>" + obj.category + "</td><td><button onclick='deleteRecord(" + obj.bookid + ")'>Delete</button></td></tr>";
+                    var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publication + "</td><td>" + obj.book + "</td><td>" + obj.category + "</td><td>" + obj.issuedDate + "</td><td>" + obj.returnDate + "</td></tr>";
                     $("table tbody").append(new_row);
                 }
             } else {
@@ -74,24 +75,8 @@
                 $("table").append("<tr><td>No books available</td></tr>");
             }
         }
-
-        function deleteRecord(id) {
-            console.log("Going to delete");
-            console.log(id);
-            let list = new BookListService().list();
-            let index = list.findIndex(obj => obj.bookid == id);
-            list.splice(index, 1);
-            localStorage.setItem("ADDBOOK", JSON.stringify(list));
-            window.location.reload();
-
-        }
-
-
-
         displayUser();
     </script>
-
-
 </body>
 
 </html>
