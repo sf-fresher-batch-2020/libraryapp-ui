@@ -89,34 +89,19 @@
             console.log(id);
             let list = new ReturnBookListService().list();
             let index = list.findIndex(obj => obj.book == id);
+            let borrowbook = list[index];
+            var returnbooks = JSON.parse(localStorage.getItem("RETURNBOOK"));
+            returnbooks.push(borrowbook);
+            localStorage.setItem("RETURNBOOK", JSON.stringify(returnbooks));
             list.splice(index, 1);
             localStorage.setItem("BORROWBOOK", JSON.stringify(list));
-            window.location.reload();
-
-            let borrowingBook = list[index];
-            list.splice(index, 1);
-            var userObj = {
-                "title": borrowingBook.title,
-                "author": borrowingBook.author,
-                "publication": borrowingBook.publication,
-                "book": borrowingBook.book,
-                "category": borrowingBook.category,
-                "issuedDate": borrowingBook.issuedDate,
-                "returnDate": borrowingBook.returnDate
-            };
-            // console.log(userObj);
-            var usersTemp = JSON.parse(localStorage.getItem("RETURNBOOK"));
-            var users = usersTemp ? usersTemp : [];
-            console.log("1" + users);
-            users.push(userObj);
-            console.log("2" + users);
-            localStorage.setItem("RETURNBOOK", JSON.stringify(users));
             let result = "success";
             if (result == "success") {
                 alert("book returned successfully");
             } else {
                 alert("book returned failed");
             }
+            window.location.reload();
         }
 
         //add days to return date
