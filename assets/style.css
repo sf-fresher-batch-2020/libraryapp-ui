@@ -227,4 +227,21 @@ tr:hover {
 }
 
 
-/***********addbook**************/
+/**********details**************/
+
+.picture {
+    margin-left: 5%;
+    float: left;
+    height: 300px;
+    width: 200px;
+}
+
+.containerBox {
+    width: 500px;
+    height: 100px;
+    padding: 5px;
+}
+
+.detailsbox {
+    margin-left: 70%;
+}

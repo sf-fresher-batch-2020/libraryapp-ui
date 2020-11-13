@@ -12,6 +12,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
     <script src="modules/booklist.js"></script>
+    <script src="modules/viewBookService.js"></script>
 
     <link rel="stylesheet" href="assets/index.css">
     <link rel="stylesheet" href="assets/style.css">
@@ -38,6 +39,7 @@
                                 <th> Publication</th>
                                 <th> Book </th>
                                 <th> Category</th>
+                                <th> Action</th>
                             </tr>
                         </thead>
 
@@ -63,7 +65,7 @@
             let sno = 0;
             if (booklist.length > 0) {
                 for (let obj of booklist) {
-                    var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publisher + "</td><td>" + obj.bookid + "</td><td>" + obj.category + "</td></tr>";
+                    var new_row = "<tr><td>" + ++sno + "</td><td>" + obj.title + "</td><td>" + obj.author + "</td><td>" + obj.publisher + "</td><td>" + obj.bookid + "</td><td>" + obj.category + "</td><td><button onclick='viewRecord(" + obj.bookid + ")'>View details</button></td></tr>";
                     $("table tbody").append(new_row);
                 }
             } else {
@@ -73,9 +75,27 @@
             }
         }
 
+        function viewRecord(id) {
+
+            let listTemp = JSON.parse(localStorage.getItem("ADDBOOK"));
+            var booklist = listTemp ? listTemp : [];
+            console.log(booklist);
 
 
-
+            var viewBookserviceObj = new ViewBookService();
+            let index = booklist.findIndex(obj => obj.bookid == id);
+            let viewBook = booklist[index];
+            var userObj = {
+                "title": viewBook.title,
+                "author": viewBook.author,
+                "publication": viewBook.publisher,
+                "book": viewBook.bookid,
+                "category": viewBook.category
+            };
+            var result = viewBookserviceObj.viewRecord(userObj);
+            booklist.splice(index, 1);
+            window.location.href = "details.html";
+        }
         displayUser();
     </script>
 
