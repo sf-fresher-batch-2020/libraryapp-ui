@@ -34,12 +34,8 @@
                         <div id="cat" style="float: left;">
                             <label>Search by category :</label>
                             <select id="category" onchange="filtercategory(this.value)">
-                            <option value="ALL">ALL</option>
-                            <option value="eng">Literature</option>
-                            <option value="cse">Computer science</option>
-                            <option value="ece">Electronics and communications</option>
-                            <option value="it">Information technology</option>
-                            <option value="che">Chemical science</option>
+                            <option value="ALL" selected>ALL</option>
+                            <option value=""></option>
                             </select>&nbsp;&nbsp;
                         </div>
                         <div id="pub" style="float: left;">
@@ -92,6 +88,7 @@
             console.log(users);
             let publishers = users.map(obj => obj.publisher);
             let authors = users.map(obj => obj.author);
+            let category = users.map(obj => obj.category);
             //for unique publishers
             console.log("Publishers", publishers);
             let uniqpub = _.uniq(publishers);
@@ -102,13 +99,16 @@
             console.log("Unique authors", uniqaut);
 
             let content, content2, content3 = "";
+            for (let c of category) {
+                content += `<option value='${c}'> ${c} </option>`;
+            }
             for (let u of uniqpub) {
                 content2 += `<option value='${u}'> ${u} </option>`;
             }
             for (let o of uniqaut) {
                 content3 += `<option value='${o}'> ${o} </option>`;
             }
-
+            document.querySelector("#category").innerHTML = content;
             document.querySelector("#publication").innerHTML = content2;
             document.querySelector("#author").innerHTML = content3;
         }
