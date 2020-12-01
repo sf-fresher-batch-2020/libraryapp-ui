@@ -89,6 +89,10 @@
             let publishers = users.map(obj => obj.publisher);
             let authors = users.map(obj => obj.author);
             let category = users.map(obj => obj.category);
+            //for unique categpries
+            console.log("Categories", category);
+            let uniqcat = _.uniq(category);
+            console.log("Unique Categories", uniqcat);
             //for unique publishers
             console.log("Publishers", publishers);
             let uniqpub = _.uniq(publishers);
@@ -99,7 +103,7 @@
             console.log("Unique authors", uniqaut);
 
             let content, content2, content3 = "";
-            for (let c of category) {
+            for (let c of uniqcat) {
                 content += `<option value='${c}'> ${c} </option>`;
             }
             for (let u of uniqpub) {
