@@ -15,6 +15,9 @@
 
     <link rel="stylesheet" href="assets/index.css">
     <link rel="stylesheet" href="assets/style.css">
+
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 </head>
 
 <body id="background">
@@ -70,9 +73,9 @@
                     $("table tbody").append(new_row);
                 }
             } else {
-                alert("No books added");
+                toastr.error("No books borrowed");
                 $("table").empty();
-                $("table").append("<tr><td>No books available</td></tr>");
+                $("table").append("<tr><td>No books borrowed</td></tr>");
             }
         }
         displayUser();
